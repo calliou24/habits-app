@@ -1,5 +1,5 @@
 //preact
-import { useState } from "preact/hooks";
+import { useReducer } from "preact/hooks";
 //component
 import NavBar from "./components/NavBar/NavBar";
 import Divider from "./components/Divider/Divider";
@@ -7,20 +7,19 @@ import { HabitsContext } from "./context/HabitsContext";
 import TodayHabits from "./components/TodayHabits/TodayHabits";
 import HabitDetails from "./components/HabitDetails/HabitDetails";
 import CompletedHabits from "./components/CompletedHabits/CompletedHabits";
-//types
-import { habitType } from "./types/habit";
 //validation
 import { isEmpty } from "./utils/validations";
 //constants
-import { habitInitialValue, habitsTemp } from "./utils/constants";
+import { reducerInitialState } from "./utils/constants";
 //functions
 import { getTextColor } from "./utils/textColorHelper";
 
 const App = () => {
-  const [habits, setHabits] = useState<habitType[]>(habitsTemp);
-  const [habitToEdit, setHabitToEdit] = useState<habitType | null>(
-    habitInitialValue
-  );
+  const [event, updateEvent] = useReducer((prev, next) => {
+    return { ...prev, ...(next ?? {}) };
+  }, reducerInitialState);
+
+  const { habits, habitToEdit } = event;
 
   return (
     <main
@@ -36,9 +35,8 @@ const App = () => {
         <HabitsContext.Provider
           value={{
             habits,
-            setHabits,
             habitToEdit,
-            setHabitToEdit,
+            updateEvent,
           }}
         >
           {!isEmpty(habitToEdit?.title) ? (

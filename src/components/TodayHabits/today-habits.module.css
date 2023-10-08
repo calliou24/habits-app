@@ -6,5 +6,5 @@
     top: -10px;
     left:0;
     font-size: 0.4em;
-    color: gray;
+    color: var(--gray);
 }

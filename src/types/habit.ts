@@ -1,10 +1,21 @@
+export type habitReducerType = {
+  habits: habitType[];
+  habitToEdit: habitType;
+};
+
+export type taskType = {
+  taskId: number;
+  title: string;
+  completed?: boolean;
+};
+
 export type habitType = {
   id: number;
-  title?: string;
-  completed?: boolean;
+  title: string;
   streak?: number;
   color?: string;
-  aditions?: number[] | null;
+  additions?: number[] | null;
+  tasks?: taskType[];
 };
 
 export type storeType = {
@@ -13,7 +24,6 @@ export type storeType = {
 
 export type contextType = {
   habits: habitType[];
-  setHabits: (habits: habitType[]) => void;
   habitToEdit: habitType | null;
-  setHabitToEdit: (habit: habitType | null) => void;
+  updateEvent: (state: any) => void;
 };

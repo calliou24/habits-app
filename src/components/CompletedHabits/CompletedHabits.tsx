@@ -1,15 +1,25 @@
 //preact
-import { useContext } from "preact/hooks";
+import { useContext, useMemo } from "preact/hooks";
 //icons
 import { HiArrowUpRight } from "react-icons/hi2";
 import { HabitsContext } from "../../context/HabitsContext";
 import BallWithIcon from "../BallWithIcon/BallWithIcon";
+import { isHabitCompletedForToday } from "../../functions/isHabitCompleteForToday";
+import { isEmpty } from "../../utils/validations";
 
 export default function CompletedHabits() {
-  const { habits } = useContext(HabitsContext);
+  const { habits, updateEvent } = useContext(HabitsContext);
+
+  const completedHabits = useMemo(() => {
+    return habits?.filter((habit) => {
+      return isHabitCompletedForToday({
+        additions: habit?.additions ?? [],
+      });
+    });
+  }, [habits]);
   return (
     <section
-      class={"mt-5 bg-white p-5 rounded-xl"}
+      class={"bg-white p-5 rounded-xl"}
       style={{
         zIndex: 100,
       }}
@@ -24,11 +34,13 @@ export default function CompletedHabits() {
       </article>
       <article class={"mt-6"}>
         <ul class={"grid gap-2"}>
-          {habits
-            ?.filter((habit) => habit?.completed)
-            .map((habit) => {
+          {!isEmpty(completedHabits) ? (
+            completedHabits.map((habit) => {
               return (
-                <li class={" rounded-2xl w-full border border-black p-5"}>
+                <li
+                  onClick={() => updateEvent({ habitToEdit: habit })}
+                  class={" rounded-2xl w-full border border-black p-5"}
+                >
                   <div class={"flex gap-3 items-center"}>
                     <div
                       class={"h-12 w-12 rounded-2xl shadow-sm"}
@@ -40,7 +52,12 @@ export default function CompletedHabits() {
                   </div>
                 </li>
               );
-            })}
+            })
+          ) : (
+            <p class={"text-gray-500 text-center text-xl"}>
+              you haven't completed any habit yet
+            </p>
+          )}
         </ul>
       </article>
     </section>

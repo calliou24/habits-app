@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 @font-face {
   font-family: neue;
   src: url('../public/fonts/neue-helvetica-55-roman.otf');
@@ -12,6 +13,7 @@
 
 *{
   font-family: neue;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -28,7 +30,7 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  /* margin-bottom: 1em; */
+  padding-bottom: 1em;
 }
 
 #app {

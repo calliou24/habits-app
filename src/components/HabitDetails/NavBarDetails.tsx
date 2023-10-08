@@ -9,13 +9,17 @@ import BallWithIcon from "../BallWithIcon/BallWithIcon";
 //functions
 import { getTextColor } from "../../utils/textColorHelper";
 
+//constants
+
+import { habitInitialValue } from "../../utils/constants";
+
 function NavBarDetails() {
-  const { habitToEdit, setHabitToEdit } = useContext(HabitsContext);
+  const { habitToEdit, updateEvent } = useContext(HabitsContext);
   return (
     <nav class={" mt-8 flex items-center justify-between w-full"}>
       <BallWithIcon
         onClick={() => {
-          setHabitToEdit(null);
+          updateEvent({ habitToEdit: habitInitialValue });
         }}
         colorBorder={getTextColor(habitToEdit?.color)}
         Icon={<HiMiniArrowLeft size={"60%"} />}

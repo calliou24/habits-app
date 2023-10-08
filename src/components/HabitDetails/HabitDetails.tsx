@@ -5,6 +5,7 @@ import DayCounter from "./Counter";
 import Divider from "../Divider/Divider";
 import NavBarDetails from "./NavBarDetails";
 import { HabitsContext } from "../../context/HabitsContext";
+import Tasks from "./Tasks/Tasks";
 
 function HabitDetails() {
   const { habitToEdit } = useContext(HabitsContext);
@@ -13,6 +14,7 @@ function HabitDetails() {
       <NavBarDetails />
       <Divider />
       <DayCounter habit={habitToEdit} />
+      <Tasks />
     </div>
   );
 }
