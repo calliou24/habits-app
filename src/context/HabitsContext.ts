@@ -3,14 +3,11 @@ import { createContext } from "preact";
 
 //types
 import { contextType } from "../types/habit";
+import { habitInitialValue, newHabitInitialValue } from "../utils/constants";
 
 export const HabitsContext = createContext<contextType>({
   habits: [],
-  habitToEdit: {
-    id: 1,
-    title: "",
-    streak: 0,
-    color: "#000000",
-  },
+  habitToEdit: habitInitialValue,
   updateEvent: (state: any) => {},
+  newHabit: newHabitInitialValue,
 });

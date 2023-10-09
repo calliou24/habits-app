@@ -5,11 +5,67 @@ import { generateUniqueId } from "./generateUniqueId";
 
 export const dayDiffMilliseconds = 24 * 60 * 60 * 1000;
 
+export const newHabitInitialValue: habitType = {
+  id: 1,
+  title: "",
+  streak: 0,
+  color: "#000000",
+  tasks: [
+    {
+      taskId: generateUniqueId(),
+      title: "buen desayuno",
+      completed: true,
+    },
+    {
+      taskId: generateUniqueId(),
+      title: "comer bien",
+      completed: false,
+    },
+    {
+      taskId: generateUniqueId(),
+      title: "comer bien",
+      completed: false,
+    },
+    {
+      taskId: generateUniqueId(),
+      title: "comer bien",
+      completed: false,
+    },
+    {
+      taskId: generateUniqueId(),
+      title: "comer bien",
+      completed: false,
+    },
+    {
+      taskId: generateUniqueId(),
+      title: "comer bien",
+      completed: false,
+    },
+    {
+      taskId: generateUniqueId(),
+      title: "comer bien",
+      completed: false,
+    },
+  ],
+};
+
 export const habitInitialValue: habitType = {
   id: 1,
   title: "",
   streak: 0,
   color: "",
+  tasks: [
+    {
+      taskId: generateUniqueId(),
+      title: "buen desayuno",
+      completed: true,
+    },
+    {
+      taskId: generateUniqueId(),
+      title: "comer bien",
+      completed: false,
+    },
+  ],
 };
 
 export const habitsTemp: habitType[] = [
@@ -87,4 +143,5 @@ export const reducerInitialState: habitReducerType = {
   habits: habitsTemp,
   habitToEdit: habitInitialValue,
   showAddHabit: false,
+  newHabit: newHabitInitialValue,
 };

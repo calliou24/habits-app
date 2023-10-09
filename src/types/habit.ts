@@ -2,6 +2,7 @@ export type habitReducerType = {
   habits: habitType[];
   habitToEdit: habitType;
   showAddHabit: boolean;
+  newHabit: habitType;
 };
 
 export type taskType = {
@@ -27,4 +28,5 @@ export type contextType = {
   habits: habitType[];
   habitToEdit: habitType | null;
   updateEvent: (state: any) => void;
+  newHabit: habitType;
 };

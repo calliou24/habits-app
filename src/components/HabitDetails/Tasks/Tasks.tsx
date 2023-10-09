@@ -17,7 +17,9 @@ function Tasks() {
           <article>
             <ul class={"mt-4 flex flex-col gap-2 h-40 overflow-y-auto"}>
               {habitToEdit?.tasks?.map((task) => (
-                <Task task={task} />
+                <li>
+                  <Task task={task} />
+                </li>
               ))}
             </ul>
           </article>

@@ -15,20 +15,23 @@ import { isValidToAddDay } from "../../../functions/isValidToAddDay";
 export const useChangeHabit = (habit: habitType | null) => {
   const { habits, updateEvent } = useContext(HabitsContext);
 
-  const handleChangeHabit = (newValues: { property: string; value: any }[]) => {
-    const newHabit: habitType | undefined = handleChangeHabitProperty({
-      id: habit?.id,
-      newValues,
-      habits: habits,
-    });
+  const handleChangeHabit = useCallback(
+    (newValues: { property: string; value: any }[]) => {
+      const newHabit: habitType | undefined = handleChangeHabitProperty({
+        id: habit?.id,
+        newValues,
+        habits: habits,
+      });
 
-    if (newHabit === undefined) return;
+      if (newHabit === undefined) return;
 
-    const habitsList: habitType[] = habits?.map((habitItem) =>
-      habitItem?.id === habit?.id ? newHabit : habitItem
-    );
-    updateEvent({ habitToEdit: newHabit, habits: habitsList });
-  };
+      const habitsList: habitType[] = habits?.map((habitItem) =>
+        habitItem?.id === habit?.id ? newHabit : habitItem
+      );
+      updateEvent({ habitToEdit: newHabit, habits: habitsList });
+    },
+    [habits, habit?.id]
+  );
 
   const handleAddDay = useCallback(() => {
     const additions: number[] = habit?.additions ?? [];

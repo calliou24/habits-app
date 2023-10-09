@@ -21,7 +21,7 @@ const App = () => {
     return { ...prev, ...(next ?? {}) };
   }, reducerInitialState);
 
-  const { habits, habitToEdit, showAddHabit } = event;
+  const { habits, habitToEdit, showAddHabit, newHabit } = event;
   useHideBodyScroll(showAddHabit);
 
   return (
@@ -40,6 +40,7 @@ const App = () => {
             habits,
             habitToEdit,
             updateEvent,
+            newHabit,
           }}
         >
           {showAddHabit && <ModalHabitDetails />}

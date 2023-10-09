@@ -3,6 +3,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import BallWithIcon from "../BallWithIcon/BallWithIcon";
 import { HabitsContext } from "../../context/HabitsContext";
 import { isEmpty } from "../../utils/validations";
+import Input from "../Inputs/Input";
+import ConfigureTasks from "./ConfigureTasks/ConfigureTasks";
 
 function ModalHabitDetails() {
   const { updateEvent, habitToEdit } = useContext(HabitsContext);
@@ -40,9 +42,9 @@ function ModalHabitDetails() {
             <span class={"text-gray-500 text-xl"}>new</span>
             <h2 class={" text-4xl"}>habit</h2>
           </div>
-          <BallWithIcon
+          <AiOutlineClose
             onClick={() => updateEvent({ showAddHabit: false })}
-            Icon={<AiOutlineClose size="60%" />}
+            size="1.8em"
           />
         </header>
         <section
@@ -50,19 +52,24 @@ function ModalHabitDetails() {
             height: "80%",
           }}
         >
-          <label
-            for="first_name"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          <form
+            class={"pt-8 flex flex-col gap-4"}
+            onSubmit={(e) => e.preventDefault()}
           >
-            First name
-          </label>
-          <input
-            type="text"
-            id="first_name"
-            class="rounded-sm w-full py-3 px-4 text-gray-900 focus:outline-none bg-gray-100"
-            placeholder="name of the habit"
-            required
-          />
+            <label class={"text-xl"}>Name</label>
+            <Input />
+            <div class={"flex content-between gap-4"}>
+              <div style={{ width: "50%" }}>
+                <label class={"text-xl whitespace-nowrap"}>Frecuency</label>
+                <Input placeholder={"1 day"} />
+              </div>
+              <div style={{ width: "50%" }}>
+                <label class={"text-xl whitespace-nowrap"}>Duration</label>
+                <Input placeholder={"30 days"} />
+              </div>
+            </div>
+            <ConfigureTasks />
+          </form>
         </section>
         <footer
           class={"grid place-items-center"}
