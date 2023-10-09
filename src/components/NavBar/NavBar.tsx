@@ -7,7 +7,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 import BallWithIcon from "../BallWithIcon/BallWithIcon";
 
 function NavBar() {
-  const { habits } = useContext(HabitsContext);
+  const { habits, updateEvent } = useContext(HabitsContext);
+
   return (
     <nav class={" mt-8 flex items-center justify-between w-full"}>
       <div class={"flex items-center gap-4"}>
@@ -21,7 +22,10 @@ function NavBar() {
           <p>User Name</p>
         </div>
       </div>
-      <BallWithIcon Icon={<AiOutlinePlus size={24} />} />
+      <BallWithIcon
+        onClick={() => updateEvent({ showAddHabit: true })}
+        Icon={<AiOutlinePlus size={24} />}
+      />
     </nav>
   );
 }

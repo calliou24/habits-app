@@ -86,4 +86,5 @@ export const habitsTemp: habitType[] = [
 export const reducerInitialState: habitReducerType = {
   habits: habitsTemp,
   habitToEdit: habitInitialValue,
+  showAddHabit: false,
 };

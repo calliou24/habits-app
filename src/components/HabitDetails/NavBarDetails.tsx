@@ -28,6 +28,9 @@ function NavBarDetails() {
         <p class={" text-xl lowercase"}>{habitToEdit?.title}</p>
       </div>
       <BallWithIcon
+        onClick={() => {
+          updateEvent({ showAddHabit: true });
+        }}
         colorBorder={getTextColor(habitToEdit?.color)}
         Icon={<CiSettings size={"60%"} />}
       />

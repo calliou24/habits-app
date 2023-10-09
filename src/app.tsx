@@ -13,13 +13,16 @@ import { isEmpty } from "./utils/validations";
 import { reducerInitialState } from "./utils/constants";
 //functions
 import { getTextColor } from "./utils/textColorHelper";
+import ModalHabitDetails from "./components/ModalHabitDetails/ModalHabitDetails";
+import useHideBodyScroll from "./hooks/useHideBodyScroll";
 
 const App = () => {
   const [event, updateEvent] = useReducer((prev, next) => {
     return { ...prev, ...(next ?? {}) };
   }, reducerInitialState);
 
-  const { habits, habitToEdit } = event;
+  const { habits, habitToEdit, showAddHabit } = event;
+  useHideBodyScroll(showAddHabit);
 
   return (
     <main
@@ -39,6 +42,7 @@ const App = () => {
             updateEvent,
           }}
         >
+          {showAddHabit && <ModalHabitDetails />}
           {!isEmpty(habitToEdit?.title) ? (
             <HabitDetails />
           ) : (

@@ -1,6 +1,7 @@
 export type habitReducerType = {
   habits: habitType[];
   habitToEdit: habitType;
+  showAddHabit: boolean;
 };
 
 export type taskType = {
