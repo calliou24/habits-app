@@ -1,6 +1,6 @@
-import { InputProps } from "../../types/generalTypes";
+import { JSX } from "preact/jsx-runtime";
 
-export default function Input(props: InputProps) {
+export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}

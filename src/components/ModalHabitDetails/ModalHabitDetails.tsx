@@ -1,13 +1,17 @@
+//context
 import { useContext } from "preact/compat";
-import { AiOutlineClose } from "react-icons/ai";
-import BallWithIcon from "../BallWithIcon/BallWithIcon";
 import { HabitsContext } from "../../context/HabitsContext";
-import { isEmpty } from "../../utils/validations";
+//icons
+import { AiOutlineClose } from "react-icons/ai";
+//components
 import Input from "../Inputs/Input";
 import ConfigureTasks from "./ConfigureTasks/ConfigureTasks";
+//hooks
+import useHandleHabit from "./hooks/useHandleHabit";
 
 function ModalHabitDetails() {
-  const { updateEvent, habitToEdit } = useContext(HabitsContext);
+  const { updateEvent, newHabit } = useContext(HabitsContext);
+  const { handleChangeNewHabit, handleCreateHabit } = useHandleHabit();
   return (
     <>
       <div className={"absolute w-screen h-screen top-0 left-0 z-[150]"} />
@@ -16,10 +20,9 @@ function ModalHabitDetails() {
             absolute 
             text-black
             bg-white 
-            shadow-2xl 
             p-4
-             top-0
-            rounded-lg
+            top-0
+            left-0
             self-center justify-self-center 
             z-[200]
          
@@ -56,16 +59,33 @@ function ModalHabitDetails() {
             class={"pt-8 flex flex-col gap-4"}
             onSubmit={(e) => e.preventDefault()}
           >
-            <label class={"text-xl"}>Name</label>
-            <Input />
+            <label class={"text-xl"}>name</label>
+            <Input
+              name={"title"}
+              onChange={handleChangeNewHabit}
+              placeholder={"drink water..."}
+              value={newHabit?.title}
+            />
             <div class={"flex content-between gap-4"}>
               <div style={{ width: "50%" }}>
-                <label class={"text-xl whitespace-nowrap"}>Frecuency</label>
-                <Input placeholder={"1 day"} />
+                <label class={"text-xl whitespace-nowrap"}>frecuency</label>
+                <Input
+                  name={"frec"}
+                  type={"number"}
+                  onChange={handleChangeNewHabit}
+                  value={newHabit?.frec}
+                  placeholder={"1 day"}
+                />
               </div>
               <div style={{ width: "50%" }}>
-                <label class={"text-xl whitespace-nowrap"}>Duration</label>
-                <Input placeholder={"30 days"} />
+                <label class={"text-xl whitespace-nowrap"}>duration</label>
+                <Input
+                  name="duration"
+                  type={"number"}
+                  onChange={handleChangeNewHabit}
+                  value={newHabit?.duration}
+                  placeholder={"30 days"}
+                />
               </div>
             </div>
             <ConfigureTasks />
@@ -78,11 +98,14 @@ function ModalHabitDetails() {
           }}
         >
           <button
+            onClick={handleCreateHabit}
             class={
               "text-white text-center bg-black p-2 rounded-md text-xl w-40"
             }
           >
-            {!isEmpty(habitToEdit?.title) ? "update" : "create"}
+            {/* {!isEmpty(habitToEdit?.title) ? "update" : */}
+            create
+            {/* //  } */}
           </button>
         </footer>
       </section>

@@ -61,7 +61,11 @@ export default function TodayHabits() {
                       }
                     >
                       {habit?.streak}
-                      <span class={"opacity-70"}> /30 days</span>
+                      <span class={"opacity-70"}>
+                        {!isEmpty(habit?.duration) && `/${habit?.duration}`}
+                        <span class={"ml-2"} />
+                        days
+                      </span>
                     </p>
                   ) : (
                     <p></p>

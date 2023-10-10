@@ -2,6 +2,7 @@ import { useCallback, useContext, useState } from "preact/hooks";
 import { generateUniqueId } from "../../../utils/generateUniqueId";
 import { taskType } from "../../../types/habit";
 import { HabitsContext } from "../../../context/HabitsContext";
+import { isEmpty } from "../../../utils/validations";
 
 export default function useAddTask() {
   const { updateEvent, newHabit } = useContext(HabitsContext);
@@ -9,6 +10,7 @@ export default function useAddTask() {
   const [showAddTask, setShowAddTask] = useState(false);
 
   const handleAddTask = useCallback(() => {
+    if (isEmpty(taskName)) return setShowAddTask(false);
     const newTask: taskType = {
       title: taskName,
       taskId: generateUniqueId(),
@@ -22,20 +24,24 @@ export default function useAddTask() {
       },
     });
     setShowAddTask(false);
+    setTaskName("");
   }, [taskName, newHabit]);
 
-  const handleDeleteTask = (id: number) => {
-    const newTasks = (newHabit?.tasks ?? [])?.filter(
-      (task) => task?.taskId !== id
-    );
+  const handleDeleteTask = useCallback(
+    (id: number) => {
+      const newTasks = (newHabit?.tasks ?? [])?.filter(
+        (task) => task?.taskId !== id
+      );
 
-    updateEvent({
-      newHabit: {
-        ...newHabit,
-        tasks: newTasks,
-      },
-    });
-  };
+      updateEvent({
+        newHabit: {
+          ...newHabit,
+          tasks: newTasks,
+        },
+      });
+    },
+    [newHabit?.tasks]
+  );
 
   return {
     showAddTask,

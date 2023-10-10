@@ -41,6 +41,7 @@ export const useChangeHabit = (habit: habitType | null) => {
     if (
       !isValidToAddDay({
         lastaddition: additions?.[lastAdditionIndex],
+        frecuency: habit?.frec,
       })
     )
       return;

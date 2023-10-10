@@ -11,14 +11,16 @@ export type taskType = {
   completed?: boolean;
 };
 
-export type habitType = {
+export interface habitType {
   id: number;
   title: string;
   streak?: number;
   color?: string;
   additions?: number[] | null;
   tasks?: taskType[];
-};
+  frec?: number;
+  duration?: number;
+}
 
 export type storeType = {
   habits: habitType[];

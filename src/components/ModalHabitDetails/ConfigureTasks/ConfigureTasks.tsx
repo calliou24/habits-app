@@ -4,7 +4,7 @@ import useAddTask from "../hooks/useAddTask";
 //context
 import { HabitsContext } from "../../../context/HabitsContext";
 //validations
-import { isEmpty } from "../../../utils/validations";
+import size, { isEmpty } from "../../../utils/validations";
 //components
 import CheckBox from "../../CheckBox/CheckBox";
 import Task from "../../HabitDetails/Tasks/Task";
@@ -25,23 +25,23 @@ function ConfigureTasks() {
     handleDeleteTask,
   } = useAddTask();
   return (
-    <div class={"flex flex-col gap-2"}>
+    <div class={"flex flex-col gap-2 mt-4"}>
       <div class={"flex items-center justify-between w-full"}>
-        <p class={"text-4xl "}>tasks</p>
+        <p class={"text-4xl "}>add tasks</p>
         {!showAddTask ? (
           <AiOutlinePlus onClick={() => setShowAddTask(true)} size="1.6em" />
         ) : (
           <div class={"flex gap-4"}>
-            <AiOutlineCheck
-              size="1.8em"
-              onClick={() => {
-                handleAddTask();
-              }}
-            />
-            <AiOutlineClose
-              onClick={() => setShowAddTask(false)}
-              size="1.8em"
-            />
+            <div class={" text-white bg-green-500 p-2 rounded-md"}>
+              <AiOutlineCheck
+                onClick={() => {
+                  handleAddTask();
+                }}
+              />
+            </div>
+            <div class={" text-white bg-red-500 p-2 rounded-md"}>
+              <AiOutlineClose onClick={() => setShowAddTask(false)} />
+            </div>
           </div>
         )}
       </div>
@@ -63,9 +63,15 @@ function ConfigureTasks() {
           </li>
         )}
         {!isEmpty(newHabit?.tasks) &&
+          size(newHabit?.tasks) > 0 &&
           newHabit?.tasks?.map((task) => {
             return (
-              <li class={"flex justify-between items-center"}>
+              <li
+                class={"flex justify-between items-center"}
+                style={{
+                  width: "99%",
+                }}
+              >
                 <Task isUpdateOrCreate={true} task={task} />
                 <BiTrashAlt
                   onClick={() => {

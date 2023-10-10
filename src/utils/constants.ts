@@ -10,43 +10,7 @@ export const newHabitInitialValue: habitType = {
   title: "",
   streak: 0,
   color: "#000000",
-  tasks: [
-    {
-      taskId: generateUniqueId(),
-      title: "buen desayuno",
-      completed: true,
-    },
-    {
-      taskId: generateUniqueId(),
-      title: "comer bien",
-      completed: false,
-    },
-    {
-      taskId: generateUniqueId(),
-      title: "comer bien",
-      completed: false,
-    },
-    {
-      taskId: generateUniqueId(),
-      title: "comer bien",
-      completed: false,
-    },
-    {
-      taskId: generateUniqueId(),
-      title: "comer bien",
-      completed: false,
-    },
-    {
-      taskId: generateUniqueId(),
-      title: "comer bien",
-      completed: false,
-    },
-    {
-      taskId: generateUniqueId(),
-      title: "comer bien",
-      completed: false,
-    },
-  ],
+  tasks: [],
 };
 
 export const habitInitialValue: habitType = {
@@ -74,7 +38,7 @@ export const habitsTemp: habitType[] = [
     title: "Bajar de peso",
     streak: 27,
     color: "#000000",
-    additions: [new Date("10/6/2023").getTime()],
+    additions: [new Date("10/9/2023").getTime()],
     tasks: [
       {
         taskId: generateUniqueId(),
