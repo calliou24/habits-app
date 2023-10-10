@@ -3,7 +3,8 @@
 import { habitReducerType, habitType } from "../types/habit";
 import { generateUniqueId } from "./generateUniqueId";
 
-export const dayDiffMilliseconds = 24 * 60 * 60 * 1000;
+export const habitRequiredFields: string[] = ["title", "frec", "duration"];
+export const dayDiffMilliseconds: number = 24 * 60 * 60 * 1000;
 
 export const newHabitInitialValue: habitType = {
   id: 1,
@@ -38,7 +39,7 @@ export const habitsTemp: habitType[] = [
     title: "Bajar de peso",
     streak: 27,
     color: "#000000",
-    additions: [new Date("10/9/2023").getTime()],
+    additions: [new Date("10//2023").getTime()],
     tasks: [
       {
         taskId: generateUniqueId(),

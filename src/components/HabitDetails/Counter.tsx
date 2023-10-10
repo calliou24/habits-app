@@ -7,6 +7,7 @@ import BallWithIcon from "../BallWithIcon/BallWithIcon";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 //helpers
 import { useChangeHabit } from "./hooks/useChangeHabit";
+import { isEmpty } from "../../utils/validations";
 
 function DayCounter({ habit }: { habit: habitType | null }) {
   const { handleAddDay, handleSubtractDay } = useChangeHabit(habit);
@@ -27,7 +28,8 @@ function DayCounter({ habit }: { habit: habitType | null }) {
         />
       </div>
       <footer class={"text-3xl"}>
-        <strong>of 30 </strong> <span class=" opacity-70">/ days</span>
+        {!isEmpty(habit?.duration) && <strong>of {habit?.duration} </strong>}{" "}
+        <span class=" opacity-80"> days</span>
       </footer>
     </div>
   );

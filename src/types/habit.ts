@@ -2,7 +2,7 @@ export type habitReducerType = {
   habits: habitType[];
   habitToEdit: habitType;
   showAddHabit: boolean;
-  newHabit: habitType;
+  newHabit: newHabitType;
 };
 
 export type taskType = {
@@ -22,6 +22,10 @@ export interface habitType {
   duration?: number;
 }
 
+export interface newHabitType extends habitType {
+  isUpdate?: boolean;
+}
+
 export type storeType = {
   habits: habitType[];
 };
@@ -30,5 +34,5 @@ export type contextType = {
   habits: habitType[];
   habitToEdit: habitType | null;
   updateEvent: (state: any) => void;
-  newHabit: habitType;
+  newHabit: newHabitType;
 };

@@ -29,7 +29,10 @@ function NavBarDetails() {
       </div>
       <BallWithIcon
         onClick={() => {
-          updateEvent({ showAddHabit: true });
+          updateEvent({
+            showAddHabit: true,
+            newHabit: { ...habitToEdit, isUpdate: true },
+          });
         }}
         colorBorder={getTextColor(habitToEdit?.color)}
         Icon={<CiSettings size={"60%"} />}

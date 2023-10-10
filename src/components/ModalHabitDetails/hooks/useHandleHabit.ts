@@ -3,8 +3,11 @@ import { isEmpty } from "../../../utils/validations";
 import { HabitsContext } from "../../../context/HabitsContext";
 import {
   habitInitialValue,
+  habitRequiredFields,
   newHabitInitialValue,
 } from "../../../utils/constants";
+import { isSomeFieldEmpty } from "../../../functions/validateRequiredFIelds";
+import { generateUniqueId } from "../../../utils/generateUniqueId";
 
 export default function useHandleHabit() {
   const { updateEvent, newHabit, habits } = useContext(HabitsContext);
@@ -26,20 +29,43 @@ export default function useHandleHabit() {
 
   const handleCreateHabit = useCallback(() => {
     //req
-    const requiredFields: string[] = ["title", "duration", "frec"];
-
-    let isSomeFieldEmpty = Object.entries(newHabit)?.some(
-      ([key, value]) => requiredFields?.includes(key) && isEmpty(value)
-    );
-
-    if (isSomeFieldEmpty) return console.error("error empty fields");
+    if (
+      isSomeFieldEmpty({
+        fields: habitRequiredFields,
+        toValidate: newHabit,
+      })
+    )
+      return console.error("error empty fields");
 
     updateEvent({
-      habits: [newHabit, ...habits],
+      habits: [{ ...newHabit, id: generateUniqueId() }, ...habits],
       showAddHabit: false,
       newHabit: newHabitInitialValue,
     });
   }, [habits, newHabit]);
 
-  return { handleChangeNewHabit, handleCreateHabit };
+  const handleUpdateHabit = useCallback(
+    (id: number) => {
+      if (
+        isSomeFieldEmpty({ fields: habitRequiredFields, toValidate: newHabit })
+      )
+        return;
+
+      const finalHabit = {
+        ...newHabit,
+        id,
+      };
+      const newHabitsList = habits?.map((habit) =>
+        habit?.id === id ? finalHabit : habit
+      );
+      updateEvent({
+        habitToEdit: finalHabit,
+        habits: newHabitsList,
+        showAddHabit: false,
+      });
+    },
+    [newHabit, habits]
+  );
+
+  return { handleChangeNewHabit, handleCreateHabit, handleUpdateHabit };
 }

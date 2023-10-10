@@ -8,10 +8,16 @@ import Input from "../Inputs/Input";
 import ConfigureTasks from "./ConfigureTasks/ConfigureTasks";
 //hooks
 import useHandleHabit from "./hooks/useHandleHabit";
+import { useScrollToWhenMount } from "../../hooks/useScrollToWhenMount";
 
 function ModalHabitDetails() {
   const { updateEvent, newHabit } = useContext(HabitsContext);
-  const { handleChangeNewHabit, handleCreateHabit } = useHandleHabit();
+  const isUpdate: boolean | undefined = newHabit?.isUpdate;
+
+  const { handleChangeNewHabit, handleCreateHabit, handleUpdateHabit } =
+    useHandleHabit();
+
+  useScrollToWhenMount();
   return (
     <>
       <div className={"absolute w-screen h-screen top-0 left-0 z-[150]"} />
@@ -98,14 +104,16 @@ function ModalHabitDetails() {
           }}
         >
           <button
-            onClick={handleCreateHabit}
+            onClick={() => {
+              return isUpdate
+                ? handleUpdateHabit(newHabit?.id)
+                : handleCreateHabit();
+            }}
             class={
               "text-white text-center bg-black p-2 rounded-md text-xl w-40"
             }
           >
-            {/* {!isEmpty(habitToEdit?.title) ? "update" : */}
-            create
-            {/* //  } */}
+            {isUpdate ? "update" : "create"}
           </button>
         </footer>
       </section>
