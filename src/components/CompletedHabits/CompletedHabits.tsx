@@ -17,6 +17,7 @@ export default function CompletedHabits() {
       });
     });
   }, [habits]);
+
   return (
     <section
       class={"bg-white p-5 rounded-xl"}
@@ -39,15 +40,17 @@ export default function CompletedHabits() {
               return (
                 <li
                   onClick={() => updateEvent({ habitToEdit: habit })}
-                  class={" rounded-2xl w-full border border-black p-5"}
+                  class={
+                    " rounded-xl w-full border cursor-pointer border-black px-5 py-2"
+                  }
                 >
                   <div class={"flex gap-3 items-center"}>
-                    <div
-                      class={"h-12 w-12 rounded-2xl shadow-sm"}
+                    {/* <div
+                      class={"h-12 w-12 rounded-3xl shadow-sm"}
                       style={{
                         background: habit?.color,
                       }}
-                    />
+                    /> */}
                     <p class={"text-xl"}>{habit.title}</p>
                   </div>
                 </li>

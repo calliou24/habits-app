@@ -7,7 +7,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import BallWithIcon from "../BallWithIcon/BallWithIcon";
 
 function NavBar() {
-  const { habits, updateEvent } = useContext(HabitsContext);
+  const { updateEvent } = useContext(HabitsContext);
 
   return (
     <nav class={" mt-8 flex items-center justify-between w-full"}>

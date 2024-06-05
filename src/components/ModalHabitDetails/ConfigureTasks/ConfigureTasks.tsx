@@ -25,7 +25,7 @@ function ConfigureTasks() {
     handleDeleteTask,
   } = useAddTask();
   return (
-    <div class={"flex flex-col gap-2 mt-4"}>
+    <div class={"flex flex-col gap-2 mt-6"}>
       <div class={"flex items-center justify-between w-full"}>
         <p class={"text-4xl "}>add tasks</p>
         {!showAddTask ? (
@@ -45,7 +45,7 @@ function ConfigureTasks() {
           </div>
         )}
       </div>
-      <ul class={" max-h-40 overflow-y-auto flex flex-col gap-3"}>
+      <ul class={" overflow-y-auto flex flex-col gap-3"}>
         {showAddTask && (
           <li class={`opacity-60 text-black flex gap-3 items-center h-8`}>
             <CheckBox value={true} color={newHabit?.color ?? ""} />

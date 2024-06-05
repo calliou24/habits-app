@@ -1,20 +1,30 @@
+//hooks
+import useHideBodyScroll from "./hooks/useHideBodyScroll";
 //preact
+import { Suspense, lazy } from "preact/compat";
 import { useReducer } from "preact/hooks";
-//component
-import NavBar from "./components/NavBar/NavBar";
-import Divider from "./components/Divider/Divider";
-import { HabitsContext } from "./context/HabitsContext";
-import TodayHabits from "./components/TodayHabits/TodayHabits";
-import HabitDetails from "./components/HabitDetails/HabitDetails";
-import CompletedHabits from "./components/CompletedHabits/CompletedHabits";
 //validation
 import { isEmpty } from "./utils/validations";
 //constants
 import { reducerInitialState } from "./utils/constants";
 //functions
 import { getTextColor } from "./utils/textColorHelper";
-import ModalHabitDetails from "./components/ModalHabitDetails/ModalHabitDetails";
-import useHideBodyScroll from "./hooks/useHideBodyScroll";
+
+//context
+import { HabitsContext } from "./context/HabitsContext";
+//component
+const NavBar = lazy(() => import("./components/NavBar/NavBar"));
+const Divider = lazy(() => import("./components/Divider/Divider"));
+const TodayHabits = lazy(() => import("./components/TodayHabits/TodayHabits"));
+const HabitDetails = lazy(
+  () => import("./components/HabitDetails/HabitDetails")
+);
+const CompletedHabits = lazy(
+  () => import("./components/CompletedHabits/CompletedHabits")
+);
+const ModalHabitDetails = lazy(
+  () => import("./components/ModalHabitDetails/ModalHabitDetails")
+);
 
 const App = () => {
   const [event, updateEvent] = useReducer((prev, next) => {
@@ -43,9 +53,15 @@ const App = () => {
             newHabit,
           }}
         >
-          {showAddHabit && <ModalHabitDetails />}
+          {showAddHabit && (
+            <Suspense fallback={<></>}>
+              <ModalHabitDetails />
+            </Suspense>
+          )}
           {!isEmpty(habitToEdit?.title) ? (
-            <HabitDetails />
+            <Suspense fallback={<></>}>
+              <HabitDetails />
+            </Suspense>
           ) : (
             <>
               <div
@@ -55,11 +71,22 @@ const App = () => {
                   zIndex: 50,
                 }}
               >
-                <NavBar />
-                <Divider />
-                <TodayHabits />
+                <Suspense fallback={<></>}>
+                  <NavBar />
+                </Suspense>
+
+                <Suspense fallback={<></>}>
+                  <Divider />
+                </Suspense>
+
+                <Suspense fallback={<></>}>
+                  <TodayHabits />
+                </Suspense>
               </div>
-              <CompletedHabits />
+
+              <Suspense fallback={<></>}>
+                <CompletedHabits />
+              </Suspense>
             </>
           )}
         </HabitsContext.Provider>
