@@ -2,7 +2,7 @@
 import { useContext } from "preact/compat";
 import { HabitsContext } from "../../context/HabitsContext";
 //icons
-import { AiOutlineClose } from "react-icons/ai";
+// import { AiOutlineClose } from "react-icons/ai";
 //components
 import Input from "../Inputs/Input";
 import ConfigureTasks from "./ConfigureTasks/ConfigureTasks";

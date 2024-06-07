@@ -24,12 +24,15 @@ function ConfigureTasks() {
     handleAddTask,
     handleDeleteTask,
   } = useAddTask();
+
+
+
   return (
     <div class={"flex flex-col gap-2 mt-6"}>
       <div class={"flex items-center justify-between w-full"}>
         <p class={"text-4xl "}>add tasks</p>
         {!showAddTask ? (
-          <AiOutlinePlus onClick={() => setShowAddTask(true)} size="1.6em" />
+          <AiOutlinePlus class={"cursor-pointer"} onClick={() => setShowAddTask(true)} size="1.6em" />
         ) : (
           <div class={"flex gap-4"}>
             <div class={" text-white bg-green-500 p-2 rounded-md"}>
