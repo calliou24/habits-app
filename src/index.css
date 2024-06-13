@@ -3,51 +3,51 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: neue;
-  src: url("../fonts/neue-helvetica-55-roman.otf");
-  font-weight: normal;
-  font-style: normal;
+    font-family: neue;
+    src: url("../fonts/neue-helvetica-55-roman.otf");
+    font-weight: normal;
+    font-style: normal;
 }
 
 * {
-  font-family: neue;
-  scroll-behavior: smooth;
+    font-family: neue;
+    scroll-behavior: smooth;
 }
 
 body {
-  background-color: #f7f7f7;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    background-color: #f7f7f7;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 #main {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 1em;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1em;
 }
 
 #app {
-  width: 100%;
-  min-height: 100%;
-  max-width: 600px;
-  display: grid;
-  gap: 2em;
-  width: 90%;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-width: 600px;
+    display: grid;
+
 }
 
 *::-webkit-scrollbar-track {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 *::-webkit-scrollbar {
-  width: 5px;
-  background-color: #f5f5f5;
+    width: 5px;
+    background-color: #f5f5f5;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #3333;
+    background-color: #3333;
 }
