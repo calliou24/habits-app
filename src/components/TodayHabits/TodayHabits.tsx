@@ -9,17 +9,13 @@ import {getTextColor} from "../../utils/textColorHelper";
 import styles from "./today-habits.module.css";
 //validations
 import {isEmpty} from "../../utils/validations";
-import {isHabitCompletedForToday} from "../../functions/isHabitCompleteForToday";
+
 
 export default function TodayHabits() {
     const {habits, updateEvent} = useContext(HabitsContext);
 
     const todayHabits = useMemo(() => {
-        return habits?.filter((habit) => {
-            return !isHabitCompletedForToday({
-                additions: habit?.additions ?? [],
-            });
-        });
+        return habits
     }, [habits]);
     return (
         <section>

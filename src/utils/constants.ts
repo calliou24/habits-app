@@ -19,18 +19,7 @@ export const habitInitialValue: habitType = {
     title: "",
     streak: 0,
     color: "",
-    tasks: [
-        {
-            taskId: generateUniqueId(),
-            title: "buen desayuno",
-            completed: true,
-        },
-        {
-            taskId: generateUniqueId(),
-            title: "comer bien",
-            completed: false,
-        },
-    ],
+
 };
 
 export const habitsTemp: habitType[] = [

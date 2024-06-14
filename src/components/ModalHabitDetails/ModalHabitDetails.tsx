@@ -61,7 +61,7 @@ function ModalHabitDetails() {
                         </div>
                     </header>
                     <form
-                        className={"grid gap-4 grid-cols-2"}
+                        className={"grid gap-4"}
                         onSubmit={(e) => e.preventDefault()}
                     >
                         <div>
@@ -73,26 +73,7 @@ function ModalHabitDetails() {
                                 value={newHabit?.title}
                             />
                         </div>
-                        <div>
-                            <label className={"text-xl whitespace-nowrap"}>frecuency</label>
-                            <Input
-                                name={"frec"}
-                                type={"number"}
-                                onChange={handleChangeNewHabit}
-                                value={newHabit?.frec}
-                                placeholder={"1 day"}
-                            />
-                        </div>
-                        <div>
-                            <label className={"text-xl whitespace-nowrap"}>duration</label>
-                            <Input
-                                name="duration"
-                                type={"number"}
-                                onChange={handleChangeNewHabit}
-                                value={newHabit?.duration}
-                                placeholder={"30 days"}
-                            />
-                        </div>
+
                     </form>
                     {/*<ConfigureTasks />*/}
 
